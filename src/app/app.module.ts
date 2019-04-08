@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDlrLGLPC5tKwmMpdYeRIVrYQe4btAKL6o',
+      apiKey: '',
       libraries: ["places"]
     }),
     FormsModule,
