@@ -1,0 +1,24 @@
+<h1>Test search place aplication</h1>
+<div class="formContainer">
+
+  <div class="filterContainer">
+    <form [formGroup]="filterForm">
+
+      <div class="searchContainer">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+          class="form-control" #search formControlName="searchControl">
+      </div>
+      <div class="typeContainer">
+        <div class="typeTitle">Pick a category</div>
+        <div class="typeCheckbox" *ngFor="let item of listOfTypes; let i = index">
+          <input formControlName="filterControl" type="checkbox" [value]="item" (change)="checkValue($event, i)">{{item}}
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<div id="map">
+
+</div>

@@ -1,18 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {MapComponent} from './map/map.component';
+import {AgmCoreModule} from '@agm/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDlrLGLPC5tKwmMpdYeRIVrYQe4btAKL6o',
+      libraries: ["places"]
+    }),
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
