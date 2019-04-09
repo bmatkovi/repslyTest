@@ -79,7 +79,6 @@ export class MapComponent implements OnInit {
   ]
   public activeListOfTypes: any[] = [];
   filterForm: FormGroup;
-
   markers: any = [];
 
   constructor(
@@ -88,7 +87,6 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.filterForm = this.fb.group({
       searchControl: new FormControl(''),
       filterControl: []
@@ -98,12 +96,14 @@ export class MapComponent implements OnInit {
     this.getPlaces();
 
     this.filterForm.valueChanges.subscribe(key => {
-      console.log(key.searchControl);
       this.searchPlacesList(key.searchControl);
     });
 
   }
 
+  /**
+   * Gets location from API
+   */
   getPlaces(): void {
     this.myLocation = new google.maps.LatLng(this.latitude, this.longitude);
 
@@ -141,12 +141,15 @@ export class MapComponent implements OnInit {
               pagination.nextPage();
             }
           }
-          // console.log('resultList', this.resultList);
         }
       });
   }
 
-
+  /**
+   * Check if a type is checked/unchecked to apply new parameters for getting places
+   * @param event 
+   * @param i 
+   */
   checkValue(event: any, i: number) {
     if (event.target.checked) {
       this.activeListOfTypes.push(this.listOfTypes[i]);
@@ -157,11 +160,14 @@ export class MapComponent implements OnInit {
     this.getPlaces();
   }
 
+  /**
+   * Search throw places by keyword and update markers
+   * @param key
+   */
   searchPlacesList(key: string) {
     this.filteredResultList = this.resultList.filter(place => {
       return place.name.toLowerCase().indexOf(key.toLowerCase()) > -1;
     });
-    // console.log('filtered list', this.filteredResultList);
 
     this.deleteMarker();
     this.filteredResultList.forEach(item => {
@@ -170,6 +176,9 @@ export class MapComponent implements OnInit {
 
   }
 
+  /**
+   * Getting use current location
+   */
   setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -180,6 +189,10 @@ export class MapComponent implements OnInit {
     }
   }
 
+  /**
+   * Create markers for locations
+   * @param place
+   */
   createMarker(place: any) {
     if (this.map && place) {
       var marker = new google.maps.Marker({
@@ -192,6 +205,10 @@ export class MapComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Delete marker
+   */
   deleteMarker() {
     this.markers.forEach(marker => {
       marker.setMap(null);
