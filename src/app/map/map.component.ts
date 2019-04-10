@@ -115,7 +115,8 @@ export class MapComponent implements OnInit {
     let marker = new google.maps.Marker({
       position: this.myLocation,
       map: this.map,
-      title: 'This is your location'
+      title: 'This is your location',
+      icon: 'assets/user_1.png'
     });
 
     this.request = {
@@ -204,7 +205,6 @@ export class MapComponent implements OnInit {
       marker.setMap(this.map)
     }
   }
-
 
   /**
    * Delete marker
